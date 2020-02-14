@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>You are not Facebook</title>
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@guillaumebriday" />
+  <meta name="twitter:title" content="You are not Facebook" />
+
+  <meta property="og:title" content="You are not Facebook" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://youarenotfacebook.com" />
+</head>
+
+<body>
+  <h1>You are not Facebook.</h1>
+  <p>In fact, you're probably not even close.</p>
+
+  <p>In 2019, Facebook, Inc net income was <strong>$18 480 000 000</strong>.</p>
+
+  <p>In 2019 only, They produced <strong>$586</strong> every seconds.</p>
+
+  <p>
+    To put in perspective, to generate your
+    $<input type="number" placeholder="Your net income"> net income,
+    Facebook need about <strong><span id="result">0 seconds</span></strong>.
+  </p>
+
+  <script src="https://unpkg.com/humanize-duration@3.21.0/humanize-duration.js"></script>
+  <script>
+    const input = document.querySelector('input')
+    const result = document.querySelector('#result')
+
+    input.addEventListener('input', (e) => {
+      e.preventDefault()
+      const value = e.target.value * 31556952 / 18480000000
+
+      result.innerHTML = humanizeDuration(value * 1000, { round: true })
+    })
+  </script>
+</body>
+</html>
