@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="You are not facebook.">
+
   <title>You are not Facebook</title>
 
   <meta name="twitter:card" content="summary_large_image" />
@@ -12,33 +15,63 @@
   <meta property="og:title" content="You are not Facebook" />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://youarenotfacebook.com" />
-</head>
 
-<body>
-  <h1>You are not Facebook.</h1>
-  <p>In fact, you're probably not even close.</p>
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 
-  <p>In 2019, Facebook, Inc net income was <strong>$18 480 000 000</strong>.</p>
+  <style>
+    body {
+      background-color: #2c5282;
+      background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%232a4365' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+    }
+  </style>
 
-  <p>In 2019 only, They produced <strong>$586</strong> every seconds.</p>
+  <script src="https://unpkg.com/humanize-duration@3.21.0/humanize-duration.js" defer></script>
 
-  <p>
-    To put in perspective, to generate your
-    $<input type="number" placeholder="Your net income"> net income,
-    Facebook need about <strong><span id="result">0 seconds</span></strong>.
-  </p>
-
-  <script src="https://unpkg.com/humanize-duration@3.21.0/humanize-duration.js"></script>
   <script>
-    const input = document.querySelector('input')
-    const result = document.querySelector('#result')
+    document.addEventListener('DOMContentLoaded', () => {
+      const input = document.querySelector('input')
+      const result = document.querySelector('#result')
 
-    input.addEventListener('input', (e) => {
-      e.preventDefault()
-      const value = e.target.value * 31556952 / 18480000000
+      input.addEventListener('input', e => {
+        e.preventDefault()
 
-      result.innerHTML = humanizeDuration(value * 1000, { round: true })
+        const facebookNetIncome = 18480000000
+        const secondsInYear = 31556952
+        const value = e.target.value * secondsInYear / facebookNetIncome
+
+        result.innerHTML = humanizeDuration(value * 1000, { largest: 3, round: true })
+      })
     })
   </script>
+</head>
+
+<body class="font-sans antialiased text-white">
+  <div class="flex justify-center items-center min-h-screen container mx-auto px-4">
+    <div>
+      <h1 class="text-6xl font-bold font-display mb-8">You are not Facebook.</h1>
+      <p class="text-lg text-gray-300">In fact, you are probably <span class="underline">not even close</span>.</p>
+
+      <p class="mt-8 text-lg">In 2019, Facebook net income was <strong class="text-3xl">$18,480,000,000</strong>.</p>
+      <p class="text-lg">In 2019 only, they earned <strong class="text-3xl">$586</strong> every seconds.</p>
+
+      <p class="mt-8">
+        To put in perspective, to generate your
+        <input aria-label="Your net income" type="number" step="1" placeholder="Your net income"
+          class="text-black px-5 py-3 text-lg appearance-none bg-white rounded-md placeholder-gray-500 focus:outline-none focus:shadow-outline">
+        net income,
+      </p>
+      <p>Facebook needs about <strong class="text-3xl"><span id="result">0 seconds</span></strong>.</p>
+
+      <p class="mt-8">You don't need to act like Facebook to actually make a good product.</p>
+      <p>Use the right tools to improve your productivity.</p>
+
+      <footer class="absolute bottom-0 inset-x-0 pb-4 text-center">
+        Made by <a href="https://guillaumebriday.fr" class="font-semibold hover:underline" hreflang="fr">Guillaume
+          Briday</a>. Edit on <a href="https://github.com/guillaumebriday/youarenotfacebook"
+          class="font-semibold hover:underline">GitHub</a>.
+      </footer>
+    </div>
+  </div>
 </body>
+
 </html>
