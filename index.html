@@ -36,7 +36,7 @@
         e.preventDefault()
 
         const facebookNetIncome = 18480000000
-        const secondsInYear = 31556952
+        const secondsInYear = 31557600
         const value = e.target.value * secondsInYear / facebookNetIncome
 
         result.innerHTML = humanizeDuration(value * 1000, { largest: 3, round: true })
