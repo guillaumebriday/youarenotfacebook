@@ -25,9 +25,9 @@
     }
   </style>
 
-  <script src="https://unpkg.com/humanize-duration@^3/humanize-duration.js" defer></script>
+  <script type="module">
+    import humanizeDuration from 'https://cdn.jsdelivr.net/npm/humanize-duration@3.31.0/+esm'
 
-  <script>
     document.addEventListener('DOMContentLoaded', () => {
       const input = document.querySelector('input')
       const result = document.querySelector('#result')
@@ -36,8 +36,8 @@
         e.preventDefault()
 
         const facebookNetIncome = 39_370_000_000
-        const secondsInYear = 31_557_600
-        const value = e.target.value * secondsInYear / facebookNetIncome
+        const secondsInYear = 31_557_600 // 86_400 * 365.25
+        const value = e.target.value.replace(/\D/g, '') * secondsInYear / facebookNetIncome
 
         result.innerHTML = humanizeDuration(value * 1000, { largest: 3, round: true })
       })
@@ -57,7 +57,7 @@
 
         <p class="mt-8">
           To put in perspective, to generate your
-          <input aria-label="Your net income" type="number" step="1" placeholder="Your net income"
+          <input aria-label="Your net income" placeholder="Your net income"
             class="text-black px-5 py-3 text-lg appearance-none bg-white rounded-md placeholder-gray-500 focus:outline-none focus:shadow-outline">
           net income,
         </p>
